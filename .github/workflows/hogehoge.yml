@@ -1,0 +1,16 @@
+name: Notify Slack on Merge to Main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  notify_slack:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify Slack
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"ヒバごん鬼雑魚！"}' $SLACK_WEBHOOK_URL
